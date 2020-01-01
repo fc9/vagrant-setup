@@ -1,6 +1,8 @@
-# extensions
+# folders
+.vagrant/
 www/
 
-# temp files
+# files
+*.log
 *.lnk
 virtualhost.xml
