@@ -1,0 +1,6 @@
+# extensions
+www/
+
+# temp files
+*.lnk
+virtualhost.xml
