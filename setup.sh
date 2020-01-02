@@ -51,8 +51,15 @@ echo "--- Ativando o repositório Universe ----"
 sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 
 echo "--- Instalando alguns modulos do PHP 7.2 ---"
-sudo apt-get install php-zip
-sudo apt-get install php7.2-zip php7.2-curl php7.2-cli php7.2-common php7.2-tokenizer php7.2-mbstring php7.2-xml php7.2-mysql php7.2-json php7.2-soap php7.2-gd php7.2-gmp php7.2-xsl php7.2-xmlwrite php7.2-xmlreader php7.2-wddx php7.2-sysvshm php7.2-sysvmsg php7.2-sysvsem php7.2-sockets php7.2-simplexml --assume-yes
+# prevenir erros
+sudo apt-get install php-zip php7.2-zip
+# basicos
+sudo apt-get install php7.2-cli php7.2-common php7.2-curl php7.2-gd php7.2-gmp php7.2-mysql php7.2-soap --assume-yes
+# requirements for Laravel 6.x
+sudo apt-get install php7.2-bcmath php7.2-ctype php7.2-json php7.2-mbstring php7.2-openssl php7.2-pdo php7.2-tokenizer php7.2-xml --assume-yes
+# extras
+sudo apt-get install php7.2-simplexml php7.2-sockets php7.2-sysvmsg php7.2-sysvsem php7.2-sysvshm --assume-yes
+sudo apt-get install php7.2-wddx php7.2-xmlreader php7.2-xmlwrite php7.2-xsl --assume-yes
 
 echo "--- Habilitando mod-rewrite do Apache ---"
 sudo a2enmod rewrite
@@ -66,7 +73,7 @@ sudo service apache2 restart
 echo "-- Instalando pacotes para o Composer roda sem erros ---"
 sudo apt-get install zip unzip --assume-yes
 
-echo "--- Baixando e Instalando Composer globalmente ---"
+echo "--- Baixando e Instalando Composer e movendo-o par a pasta de binarios local ---"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
@@ -75,7 +82,32 @@ echo '<?php phpinfo();' > /var/www/html/info.php
 
 # Instale a partir daqui o que você desejar
 
+echo "--- Instalando Laravel Installer ---"
+composer global require laravel/installer
+
+echo "--- Adicionar o binario do Laravel ao Path no ubuntu 18.04 ---"
+sudo echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc
+sudo source ~/.bashrc --assume-yes
+echo $PATH
+
+#echo "--- Criando projeto ---"
+#cd /var/www/
+#laravel new blog
+#ls /var/www/blog
+
 echo "[OK] --- Ambiente de desenvolvimento concluido ---"
 
 # Garantir que deu tudo OK (code 0)
 exit 0
+
+# Restaurando .bashrc para o padrao
+#cp ~/.bashrc ~/.bash.old
+#cp /etc/skel/.bashrc ~/
+#source ~/.bashrc
+
+# Instalar o iptables
+#apt-get install iptables
+
+# Instalar o Netstat
+# netstat is a command-line tool that can provide information about network connections, including IP addresses, ports and services communicating on these ports..
+#sudo apt-get install net-tools --assume-yes
