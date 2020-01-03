@@ -1,7 +1,14 @@
 #!/bin/bash
 
+# Ubuntu 18.04
+
+APP_DIRECTORY=empireasy
+REPOSITORY=https://fc9@bitbucket.org/fc9/empireasy-app.git
+EMAIL=fabiocabralsantos@gmail.com
+NAME=fc9
+
 echo " "
-echo "### Iniciando instalacao do ambiente de Desenvolvimento"
+echo "### Iniciando instalacao do ambiente de Producao"
 
 echo " "
 echo "### Atualizando lista de pacotes disponiveis"
@@ -29,7 +36,7 @@ EOF
 
 echo " "
 echo "### Instalando pacotes basicos"
-sudo apt-get install vim curl python-software-properties git-core --assume-yes
+sudo apt-get install vim curl python-soinftware-properties git-core --assume-yes
 
 echo " "
 echo "### Adicionando Apache 2"
@@ -75,7 +82,7 @@ sudo apt-get install php7.2-wddx php7.2-xmlreader php7.2-xmlwrite php7.2-xsl --a
 echo " "
 echo "### Habilitando mod-rewrite do Apache"
 sudo a2enmod rewrite
-
+https://bitbucket.org/fc9/empireasy-app/admin/access-keys/
 echo " "
 echo "### Habilitando php7.2"
 sudo a2enmod php7.2
@@ -85,7 +92,7 @@ echo "### Reiniciando Apache"
 sudo service apache2 restart
 
 echo " "
-echo "### Instalando pacotes para o Composer roda sem erros"
+echo "### Instalando pacotes para o Composer roda sem erros"https://bitbucket.org/fc9/empireasy-app/admin/access-keys/
 sudo apt-get install zip unzip --assume-yes
 
 echo " "
@@ -98,11 +105,6 @@ echo "### Criando arquivo teste"
 echo '<?php phpinfo();' > /var/www/html/info.php
 
 # Instale a partir daqui o que você desejar
-
-echo " "
-echo "### Criando usuario do Git"
-git config --global user.email "fabiocabralsantos@gmail.com"
-git config --global user.name "fc9"
 
 echo " "
 echo "### Instalando Laravel Installer com Composer"
@@ -118,41 +120,60 @@ su application
 echo $PATH
 
 echo " "
-echo "### Criando projeto Laravel"
+echo "### Criando usuario do Git"
+git config --global user.email $EMAIL
+git config --global user.name $NAME
+
+echo " "
+echo "### Gerando uma nova chave SSH para adicionar ao SSH agente."
+echo " "
+echo "Siga as instruções:  "
+echo "- Quando aparecer \"Enter a file in which to save the key\", aperte ENTER."
+echo "- Insira e confirme a senha de segurança."
+echo "- Depois, copia a chave publica de \"/home/application/.ssh/id_rsa.pub\""
+echo "- Adicione ao repositorio (https://bitbucket.org/fc9/$DIRECTORY-app/admin/access-keys/)." 
+ssh-keygen -t rsa -b 4096 -C $EMAIL
+vim /home/application/.ssh/id_rsa.pub
+
+echo " "
+echo "### Clonando projeto Laravel"
+sudo chmod -R 777 /var/www
 cd /var/www/
-laravel new empireasy
+git clone $REPOSITORY $DIRECTORY
+cd /var/www/$DIRECTORY
+git remote -v
 
 echo " "
 echo "### Dando permissões de acesso"; 
-sudo chmod -R 777 /var/www/empireasy/storage
-sudo chmod -R 777 /var/www/empireasy/.env
+sudo chmod -R 777 /var/www/$DIRECTORY/storage
+sudo chmod -R 777 /var/www/$DIRECTORY/bootstrap/cache
+sudo chmod -R 777 /var/www/$DIRECTORY/.env
+sudo chown -R application:application /var/www/$DIRECTORY/public
 
 echo " "
 echo "### Atualizando o Composer"
-cd /var/www/empireasy
+cd /var/www/$DIRECTORY
+composer install
 composer update
 
 echo " "
-echo "### Iniciando repositório"
-cd /var/www/empireasy
-git init
-git add .
-git commit -m "Initial commit"
+echo "### Alterando pasta raiz do servidor web"
+sudo vim /etc/apache2/sites-available/000-default.conf
+sudo service apache2 restart
 
 echo " "
-echo "[OK] Ambiente de desenvolvimento concluido!"
+echo "### Configurando o arquivo de hosts"
+sudo vim /etc/hosts
+
+echo " "
+echo "### Iniciando repositório"
+cd /var/www/$DIRECTORY
+git add .
+git commit -m "Commit in producer"
+git remote
+
+echo " "
+echo "[OK] Ambiente de producao concluido!"
 
 # Garantir que deu tudo OK (code 0)
 exit 0
-
-# Restaurando .bashrc para o padrao
-#cp ~/.bashrc ~/.bash.old
-#cp /etc/skel/.bashrc ~/
-#source ~/.bashrc
-
-# Instalar o iptables
-#apt-get install iptables
-
-# Instalar o Netstat
-# netstat is a command-line tool that can provide information about network connections, including IP addresses, ports and services communicating on these ports..
-#sudo apt-get install net-tools --assume-yes

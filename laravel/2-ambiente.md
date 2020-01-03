@@ -32,11 +32,11 @@ Criando um novo projeto Laravel
 
 Com a ferramenta instalada, basta executar o comando a seguir para criar um diretório **blog** com uma novo projeto do Laravel:
 
-```laravel new *blog*```
+```laravel new blog```
 
 ### Via create-project do Composer
 
-```composer create-project --prefer-dist laravel/laravel *blog*```
+```composer create-project --prefer-dist laravel/laravel blog```
 
 Configuração
 ============
