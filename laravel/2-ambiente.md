@@ -19,7 +19,10 @@ Outros
 - Vim
 - MySQL 5.5
 
-## Criando um novo projeto Laravel
+O arquivo setup.sh tem um script para instalação e configuração automática.
+
+Criando um novo projeto Laravel
+===============================
 
 ### Via Laravel Installer
 
@@ -33,8 +36,16 @@ Com a ferramenta instalada, basta executar o comando a seguir para criar um dire
 
 ```composer create-project --prefer-dist laravel/laravel *blog*```
 
-## Configuração
+Configuração
+============
 
-### public
+### Diretório *public*
 
 Configure o diretório *public* como raiz do servidor web ou configure um **virtual host** apontando a raiz para pasta *public*.
+
+### Arquivo de configuração de ambiente *.env*
+
+Edite o arquivo **.env** com os dados do projeto, por exemplo: conexão com o banco de dados.
+
+### Permissões de diretório
+

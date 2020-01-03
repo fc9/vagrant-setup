@@ -91,9 +91,10 @@ sudo source ~/.bashrc --assume-yes
 echo $PATH
 
 #echo "--- Criando projeto ---"
-#cd /var/www/
-#laravel new blog
-#ls /var/www/blog
+cd /var/www/
+laravel new blog
+ls /var/www/blog
+composer update
 
 echo "--- Criando usuario do Git ---"
 git config --global user.email "fabiocabralsantos@gmail.com"
