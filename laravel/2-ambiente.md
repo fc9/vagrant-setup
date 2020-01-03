@@ -1,5 +1,7 @@
 # Definindo um ambiente de desenvolvimento
 
+> substitua **blog** pelo nome de diretorio do seu projeto.
+
 ### Requisitos de sistema:
 
 - PHP >= 7.2.0
@@ -45,7 +47,38 @@ Configure o diretório *public* como raiz do servidor web ou configure um **virt
 
 ### Arquivo de configuração de ambiente *.env*
 
-Edite o arquivo **.env** com os dados do projeto, por exemplo: conexão com o banco de dados.
+Edite o arquivo *.env* com os dados do projeto, por exemplo: conexão com o banco de dados.
 
 ### Permissões de diretório
 
+O diretório *storage* devem ser gravável ​​pelo servidor Web ou o Laravel não será executado:
+
+```sudo chmod -R 777 /var/www/blog/storage```
+
+> Se você estiver usando a máquina virtual [Homestead](https://laravel.com/docs/6.x/homestead), essas permissões já deverão estar definidas em *bootstrap/cache*.
+
+O arquivo de configuração de ambiente também:
+
+```sudo chmod -R 777 /var/www/blog/.env```
+
+### Chave do aplicativo
+
+Defina uma *app key* com uma sequência aleatória que deve ter 32 caracteres. A chave pode ser configurada no arquivo de ambiente *.env*. **Se a chave do aplicativo não estiver definida, suas sessões do usuário e outros dados criptografados não serão seguros!**.
+
+> Se você instalou o Laravel via Composer ou o Laravel Installer, essa chave já foi definida para você pelo comando ```php artisan key:generate```.
+
+Adicionais
+==========
+
+### Atualize as dependências
+
+```cd /var/www/blog && composer update```
+
+### Inicie o repositório do projeto
+
+```
+cd /var/www/blog
+git init
+git add .
+git commit -m "Initial commit"
+```
