@@ -93,7 +93,7 @@ echo $PATH
 #echo "--- Criando projeto ---"
 cd /var/www/
 laravel new blog
-ls /var/www/blog
+cd /var/www/blog
 composer update
 
 echo "--- Criando usuario do Git ---"

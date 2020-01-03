@@ -72,7 +72,10 @@ Adicionais
 
 ### Atualize as dependências
 
-```cd /var/www/blog && composer update```
+```
+cd /var/www/blog
+composer update
+```
 
 ### Inicie o repositório do projeto
 
