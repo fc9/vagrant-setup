@@ -23,7 +23,7 @@ Outros
 
 ### Via Laravel Installer
 
-> Edite e execute o arquivo (setup.sh)[../setup.sh] para configurar o ambiente com Laravel Installer.
+> Edite e execute o arquivo [setup.sh](../setup.sh) para configurar o ambiente com Laravel Installer.
 
 Com a ferramenta instalada, basta executar o comando a seguir para criar um diretório **blog** com uma novo projeto do Laravel:
 
@@ -37,4 +37,4 @@ Com a ferramenta instalada, basta executar o comando a seguir para criar um dire
 
 ### public
 
-Configure o diretório *public* como raiz do servidor web ou configure um *virtual host* apontando a raiz para pasta *public*.
+Configure o diretório *public* como raiz do servidor web ou configure um **virtual host** apontando a raiz para pasta *public*.
