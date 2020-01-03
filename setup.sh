@@ -82,7 +82,7 @@ echo '<?php phpinfo();' > /var/www/html/info.php
 
 # Instale a partir daqui o que você desejar
 
-echo "--- Instalando Laravel Installer ---"
+echo "--- Instalando Laravel Installer com Composer ---"
 composer global require laravel/installer
 
 echo "--- Adicionar o binario do Laravel ao Path no ubuntu 18.04 ---"
@@ -94,6 +94,10 @@ echo $PATH
 #cd /var/www/
 #laravel new blog
 #ls /var/www/blog
+
+echo "--- Criando usuario do Git ---"
+git config --global user.email "fabiocabralsantos@gmail.com"
+git config --global user.name "fc9"
 
 echo "[OK] --- Ambiente de desenvolvimento concluido ---"
 
