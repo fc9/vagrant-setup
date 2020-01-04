@@ -263,7 +263,7 @@ Route::get('/', function() {
 });
 ```
 
-> Esse código procura uma view em *resources/views/home.blade.php* ou em *resources/views/home.php*, carrega o conteúdo, analisa qualquer estrutura de controle ou PHP inline até termos uma saída. Quando retornada, ela passa para o resto da pilha de resposta e acabará sendo retornada para o usuário.
+Esse código procura uma view em *resources/views/home.blade.php* ou em *resources/views/home.php*, carrega o conteúdo, analisa qualquer estrutura de controle ou PHP inline até termos uma saída. Quando retornada, ela passa para o resto da pilha de resposta e acabará sendo retornada para o usuário.
 
 ### Passando variáveis a view
 
@@ -280,13 +280,13 @@ Controllers
 
 > **controllers** - são classes que organizam a lógica de uma ou mais rotas em um único local.
 
-Controladores tendem a agrupar a lógica de várias rotas semelhantes, principalmente se o aplicativo for um CRUD. Assim, um controlador pode manipular todas as ações relacionadas a um recurso específico. **A Tarefa principal de um controlador ** é captar a intenção de uma solicitação HTTP e passá-la para o resto do aplicativo.
+Controladores tendem a agrupar a lógica de várias rotas semelhantes, principalmente se o aplicativo for um CRUD. Assim, um controlador pode manipular todas as ações relacionadas a um recurso específico. **A Tarefa principal de um controlador** é captar a intenção de uma solicitação HTTP e passá-la para o resto do aplicativo.
 
 > Considere-os como guardas de trânsito que roteiam solicitações HTTP pelo aplicativo. Já que há outras maneiras de as solicitações chegarem - cron jobs, chamadas de linha de comando do Artisan, queue jobs etc.
 
 Criando um controlador com o Artisan:
 
-````php artisan make:controller TasksController```
+```php artisan make:controller TasksController```
 
 > **Artisan** - ferramenta de linha de comando do Laravel. Pode ser usado para executar migrações,  criar usuários e outros registros de banco de dados manualmente e realizar muitas outras tarefas online de execução única.
 
@@ -303,6 +303,7 @@ public function index() {
     return view('tasks'.index)->with('tasks', Task::all());
 }
 ```
+
 ## Gerando controladores de recursos
 
 É possível gerar automaticamente métodos de rotas de recursos básicos como create() e update(). Passe o flag **--resource** quando você criar o controlador.
